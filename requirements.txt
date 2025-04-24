@@ -1,0 +1,8 @@
+runpod==1.7.7
+fastapi==0.109.2
+uvicorn==0.27.1
+soundfile==0.12.1
+torch==2.2.1
+torchaudio==2.2.1
+numpy==1.26.4
+dia @ git+https://github.com/nari-labs/dia.git

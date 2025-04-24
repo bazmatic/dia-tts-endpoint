@@ -9,6 +9,7 @@ A serverless endpoint for generating speech using the [Dia](https://github.com/n
 - Optional voice cloning using audio prompts
 - Configurable generation parameters (temperature, top_p)
 - Serverless deployment with RunPod
+- Support for both AMD CPUs and NVIDIA GPUs
 
 ## Quick Start
 
@@ -38,19 +39,39 @@ python rp_handler.py
 
 ### Docker Deployment
 
+#### Local Testing
+
 1. Build the Docker image:
 ```bash
+# For NVIDIA GPU support
 docker build -t dia-tts-endpoint:latest .
+
+# For AMD CPU support
+docker build -t dia-tts-endpoint:latest --build-arg BASE_IMAGE=ubuntu:22.04 .
 ```
 
 2. Run the container:
 ```bash
+# For NVIDIA GPU
 docker run --gpus all -p 8000:8000 dia-tts-endpoint:latest
+
+# For AMD CPU
+docker run -p 8000:8000 dia-tts-endpoint:latest
 ```
 
-3. For RunPod deployment:
+#### RunPod Deployment
+
+1. Build for RunPod:
 ```bash
+# For NVIDIA GPU
 docker build -t your-dockerhub-username/dia-tts-endpoint:v1.0.0 --platform linux/amd64 .
+
+# For AMD CPU
+docker build -t your-dockerhub-username/dia-tts-endpoint:v1.0.0 --platform linux/amd64 --build-arg BASE_IMAGE=ubuntu:22.04 .
+```
+
+2. Push to Docker Hub:
+```bash
 docker push your-dockerhub-username/dia-tts-endpoint:v1.0.0
 ```
 

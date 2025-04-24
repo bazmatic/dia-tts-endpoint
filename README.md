@@ -12,9 +12,11 @@ A serverless endpoint for generating speech using the [Dia](https://github.com/n
 
 ## Quick Start
 
+### Local Development
+
 1. Clone the repository:
 ```bash
-git clone https://github.com/yourusername/dia-tts-endpoint.git
+git clone https://github.com/bazmatic/dia-tts-endpoint.git
 cd dia-tts-endpoint
 ```
 
@@ -34,19 +36,23 @@ pip install -r requirements.txt
 python rp_handler.py
 ```
 
-## Deployment
+### Docker Deployment
 
 1. Build the Docker image:
 ```bash
-docker build -t your-dockerhub-username/dia-tts-endpoint:v1.0.0 --platform linux/amd64 .
+docker build -t dia-tts-endpoint:latest .
 ```
 
-2. Push to Docker Hub:
+2. Run the container:
 ```bash
+docker run --gpus all -p 8000:8000 dia-tts-endpoint:latest
+```
+
+3. For RunPod deployment:
+```bash
+docker build -t your-dockerhub-username/dia-tts-endpoint:v1.0.0 --platform linux/amd64 .
 docker push your-dockerhub-username/dia-tts-endpoint:v1.0.0
 ```
-
-3. Deploy to RunPod using the Docker image.
 
 ## API Usage
 
